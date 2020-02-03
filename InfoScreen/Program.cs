@@ -11,6 +11,10 @@ namespace InfoScreen
         {
             Console.WriteLine("NOSSUED InfoScreen");
 
+            var resolver = new UdpServerResolver("NOSSUED", 56987);
+            var server = resolver.Resolve();
+            
+            
             var key = Environment.GetEnvironmentVariable("twitter-key");
             var secret = Environment.GetEnvironmentVariable("twitter-secret");
 
