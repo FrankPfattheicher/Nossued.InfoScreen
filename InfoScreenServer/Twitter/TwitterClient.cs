@@ -1,15 +1,22 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using CoreTweet;
 
-namespace InfoScreen.Twitter
+namespace InfoScreenServer.Twitter
 {
     public class TwitterClient : IDisposable
     {
         private IDisposable _subscription;
         private TweetReceiver _receiver;
 
-        public event Action<string> NewTweet;
+
+        public int MaxTweets { get; set; } = 10;
+
+        public List<TwitterMessage> Tweets = new List<TwitterMessage>();
+
+        public event Action<TwitterMessage> NewTweet;
         
         public bool Connect(string key, string secret, string trackWord)
         {
@@ -46,9 +53,11 @@ namespace InfoScreen.Twitter
             }
         }
 
-        private void OnNewTweetReceived(string message)
+        private void OnNewTweetReceived(TwitterMessage tweet)
         {
-            NewTweet?.Invoke(message);
+            Tweets.Insert(0, tweet);
+            Tweets = Tweets.Take(MaxTweets).ToList();
+            NewTweet?.Invoke(tweet);
         }
 
         public void Dispose()

@@ -1,11 +1,11 @@
 <div>
     
-    <h1>NOSSUED {{Year}}</h1>
+    <h1>{{Year}}</h1>
     
     <p>Tweets</p>
     <ul>
         <li v-for="tweet in Tweets">
-            {{tweet}}
+            {{tweet.UserName}} : {{tweet.Text}}
         </li>
     </ul>
     

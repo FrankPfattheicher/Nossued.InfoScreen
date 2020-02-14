@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoScreen", "InfoScreen.csproj", "{D2303B1B-AFCC-4DA3-BF37-364864F0CB90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoServer", "..\InfoServer\InfoServer.csproj", "{DD682F64-123C-4C33-AD5B-29590E065CAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoScreenClient", "..\InfoScreenClient\InfoScreenClient.csproj", "{DD682F64-123C-4C33-AD5B-29590E065CAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
