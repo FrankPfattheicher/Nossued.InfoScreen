@@ -8,6 +8,8 @@ namespace InfoScreen.Twitter
     {
         private IDisposable _subscription;
         private TweetReceiver _receiver;
+
+        public event Action<string> NewTweet;
         
         public bool Connect(string key, string secret, string trackWord)
         {
@@ -32,6 +34,7 @@ namespace InfoScreen.Twitter
                 Console.WriteLine("Waiting for tweets...");
             
                 _receiver = new TweetReceiver();
+                _receiver.NewTweet += OnNewTweetReceived;
                 _subscription = stream.Subscribe(_receiver);
 
                 return true;
@@ -42,9 +45,15 @@ namespace InfoScreen.Twitter
                 return false;
             }
         }
-        
+
+        private void OnNewTweetReceived(string message)
+        {
+            NewTweet?.Invoke(message);
+        }
+
         public void Dispose()
         {
+            _receiver.NewTweet -= OnNewTweetReceived;
             _subscription.Dispose();
         }
     }

@@ -8,6 +8,12 @@
     <ItemGroup>
       <PackageReference Include="CoreTweet" Version="1.0.0.483" />
       <PackageReference Include="CoreTweet.Streaming.Reactive" Version="0.6.0.251" />
+      <PackageReference Include="IctBaden.Stonehenge3" Version="3.10.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="app\home.html" />
+      <EmbeddedResource Include="app\home.html" />
     </ItemGroup>
 
 </Project>

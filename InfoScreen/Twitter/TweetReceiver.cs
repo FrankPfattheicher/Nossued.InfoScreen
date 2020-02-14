@@ -5,7 +5,8 @@ namespace InfoScreen.Twitter
 {
     public class TweetReceiver : IObserver<StreamingMessage>
     {
-        
+        public event Action<string> NewTweet;
+
         public TweetReceiver()
         {
             
@@ -24,6 +25,8 @@ namespace InfoScreen.Twitter
             if (!(msg is StatusMessage status)) return;
                 
             Console.WriteLine(status.Status.User.Name + ": " + status.Status.Text);
+            
+            NewTweet?.Invoke(status.Status.Text);
         }
     }
 }
