@@ -10,5 +10,8 @@ namespace InfoScreenServer.Twitter
         public string UserName { get; set; }
         public string Text { get; set; }
 
+        public bool HasMedia => !string.IsNullOrEmpty(MediaUrl);
+        public string MediaUrl { get; set; }
+
     }
 }

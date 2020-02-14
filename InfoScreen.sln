@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoScreen", "InfoScreen.csproj", "{D2303B1B-AFCC-4DA3-BF37-364864F0CB90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoScreenClient", "InfoScreenClient\InfoScreenClient.csproj", "{DD682F64-123C-4C33-AD5B-29590E065CAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoScreenClient", "..\InfoScreenClient\InfoScreenClient.csproj", "{DD682F64-123C-4C33-AD5B-29590E065CAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoScreenServer", "InfoScreenServer\InfoScreenServer.csproj", "{37D2FF2F-67B5-486B-A533-451B1CE9C2A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,13 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D2303B1B-AFCC-4DA3-BF37-364864F0CB90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2303B1B-AFCC-4DA3-BF37-364864F0CB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2303B1B-AFCC-4DA3-BF37-364864F0CB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2303B1B-AFCC-4DA3-BF37-364864F0CB90}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD682F64-123C-4C33-AD5B-29590E065CAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD682F64-123C-4C33-AD5B-29590E065CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD682F64-123C-4C33-AD5B-29590E065CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD682F64-123C-4C33-AD5B-29590E065CAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37D2FF2F-67B5-486B-A533-451B1CE9C2A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37D2FF2F-67B5-486B-A533-451B1CE9C2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37D2FF2F-67B5-486B-A533-451B1CE9C2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37D2FF2F-67B5-486B-A533-451B1CE9C2A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

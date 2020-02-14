@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using IctBaden.Framework.AppUtils;
 using IctBaden.Framework.IniFile;
+using IctBaden.Framework.PropertyProvider;
 using IctBaden.Stonehenge3.Hosting;
 using IctBaden.Stonehenge3.Kestrel;
 using IctBaden.Stonehenge3.Resources;
@@ -17,25 +16,38 @@ namespace InfoScreenServer
     {
         private static TwitterClient _client;
 
-        static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine("NOSSUED InfoScreenServer");
 
             var cfgFile = Path.Combine(Application.GetApplicationDirectory(), "InfoScreen.cfg");
-            var settings = new Profile(cfgFile);
+            var profile = new Profile(cfgFile);
+            var settings = new EventSettings();
 
-            var eventName = settings["Event"].Get("Name", "NOSSUED");
-            var eventKeyword = settings["Event"].Get("Keyword", "NOSSUED");
+            new ClassPropertyProvider(settings)
+                .SetProperties(profile["Event"].Properties);
 
+            Console.WriteLine($"Event {settings.Name}, Keyword = {settings.Keyword}");
+            
+            
             var key = Environment.GetEnvironmentVariable("twitter-key");
             var secret = Environment.GetEnvironmentVariable("twitter-secret");
 
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(secret))
+            {
+                Console.WriteLine("Missing twitter auth.");
+                return;
+            }
+            
             _client = new TwitterClient();
-            _client.Connect(key, secret, "JetBrains");
+            _client.Connect(key, secret, settings.Keyword);
             
             var vue = new VueResourceProvider();
             var provider = StonehengeResourceLoader.CreateDefaultLoader(vue);
+            
             provider.Services.AddService(typeof(TwitterClient), _client);
+            provider.Services.AddService(typeof(EventSettings), settings);
+
             var options = new StonehengeHostOptions();
             var host = new KestrelHost(provider, options);
             host.Start("localhost", 32000);

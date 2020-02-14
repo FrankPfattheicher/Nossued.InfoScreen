@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using IctBaden.Stonehenge3.Core;
 using IctBaden.Stonehenge3.ViewModel;
 using InfoScreenServer.Twitter;
@@ -11,13 +12,20 @@ namespace InfoScreenServer.ViewModels
     public class HomeVm : ActiveViewModel, IDisposable
     {
         private readonly TwitterClient _twitter;
+        private readonly EventSettings _settings;
 
-        public List<TwitterMessage> Tweets => _twitter.Tweets;
+        public string Name => _settings.Name;
+        public TwitterMessage[] Tweets => _twitter.Tweets.ToArray();
 
-        public HomeVm(AppSession session, TwitterClient twitter) 
+        public HomeVm(AppSession session, TwitterClient twitter, EventSettings settings) 
             : base(session)
         {
             _twitter = twitter;
+            _settings = settings;
+        }
+
+        public override void OnLoad()
+        {
             _twitter.NewTweet += OnNewTweet;
         }
 
