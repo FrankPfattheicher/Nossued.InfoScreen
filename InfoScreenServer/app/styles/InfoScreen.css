@@ -1,0 +1,47 @@
+
+.twitter-wall {
+    font-size: 8pt;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.twitter-wall:after {
+    content: "";
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;  background-image: url("/images/bienenwabe.webp");
+    background-size: cover;
+}
+
+.tweet {
+    background-color: whitesmoke;
+    width: 200px;
+    margin: .5em;
+    padding: .3em;
+    border: 1px solid darkslategrey;
+    border-radius: 4px;
+    box-shadow: 4px 4px 8px 0 rgba(0,0,0,0.8);
+}
+
+.tweet-user {
+    color: darkblue;
+    font-weight: bolder;
+}
+
+.tweet-time {
+    float: right;
+    color: darkslategrey;
+}
+
+.tweet img {
+    max-height: 100px; 
+    max-width: 200px;
+}
