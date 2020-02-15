@@ -1,4 +1,6 @@
 using System;
+using System.Globalization;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace InfoScreenServer.Twitter
@@ -7,6 +9,7 @@ namespace InfoScreenServer.Twitter
     {
         public long Id { get; set; }
         public DateTime Time { get; set; }
+        public string TimeText => Time.ToString("HH:mm");
         public string UserName { get; set; }
         public string Text { get; set; }
 

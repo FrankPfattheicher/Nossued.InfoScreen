@@ -1,0 +1,11 @@
+<div>
+
+    <h2>twitter wall</h2>
+
+    <div class="tweet" v-for="tweet in Tweets">
+        <span class="tweet-user">{{tweet.UserName}}</span> <span class="tweet-time" >{{tweet.TimeText}}</span>
+        <p>{{tweet.Text}}</p>         
+        <img v-if="tweet.HasMedia" :src="tweet.MediaUrl"/>
+    </div>
+
+</div>

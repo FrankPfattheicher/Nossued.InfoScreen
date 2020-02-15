@@ -9,7 +9,7 @@ using InfoScreenServer.Twitter;
 
 namespace InfoScreenServer.ViewModels
 {
-    public class HomeVm : ActiveViewModel, IDisposable
+    public class TweetsVm : ActiveViewModel, IDisposable
     {
         private readonly TwitterClient _twitter;
         private readonly EventSettings _settings;
@@ -17,7 +17,7 @@ namespace InfoScreenServer.ViewModels
         public string Name => _settings.Name;
         public TwitterMessage[] Tweets => _twitter.Tweets.ToArray();
 
-        public HomeVm(AppSession session, TwitterClient twitter, EventSettings settings) 
+        public TweetsVm(AppSession session, TwitterClient twitter, EventSettings settings) 
             : base(session)
         {
             _twitter = twitter;

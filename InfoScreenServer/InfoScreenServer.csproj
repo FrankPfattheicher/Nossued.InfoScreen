@@ -14,12 +14,21 @@
 
     <ItemGroup>
       <None Remove="app\home.html" />
-      <EmbeddedResource Include="app\home.html" />
+      <None Remove="app\styles\InfoScreen.css" />
+      <EmbeddedResource Include="app\styles\InfoScreen.css" />
+      <None Remove="app\tweets.html" />
+      <EmbeddedResource Include="app\tweets.html" />
+      <None Remove="app\images\bienenwabe.webp" />
+      <EmbeddedResource Include="app\images\bienenwabe.webp" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="InfoScreen.cfg" />
       <Content Include="InfoScreen.cfg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="DemoTweets.json" />
+      <Content Include="DemoTweets.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

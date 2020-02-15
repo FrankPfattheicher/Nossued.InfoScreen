@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using IctBaden.Framework.AppUtils;
@@ -9,6 +10,7 @@ using IctBaden.Stonehenge3.Kestrel;
 using IctBaden.Stonehenge3.Resources;
 using IctBaden.Stonehenge3.Vue;
 using InfoScreenServer.Twitter;
+using Newtonsoft.Json;
 
 namespace InfoScreenServer
 {
@@ -33,14 +35,18 @@ namespace InfoScreenServer
             var key = Environment.GetEnvironmentVariable("twitter-key");
             var secret = Environment.GetEnvironmentVariable("twitter-secret");
 
+            _client = new TwitterClient();
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(secret))
             {
-                Console.WriteLine("Missing twitter auth.");
-                return;
+                Console.WriteLine("Missing twitter auth - start demo mode");
+                var tweets = Path.Combine(Application.GetApplicationDirectory(), "DemoTweets.json");
+                var json = File.ReadAllText(tweets);
+                _client.Tweets = JsonConvert.DeserializeObject<List<TwitterMessage>>(json);
             }
-            
-            _client = new TwitterClient();
-            _client.Connect(key, secret, settings.Keyword);
+            else
+            {
+                _client.Connect(key, secret, settings.Keyword);
+            }            
             
             var vue = new VueResourceProvider();
             var provider = StonehengeResourceLoader.CreateDefaultLoader(vue);
@@ -48,7 +54,10 @@ namespace InfoScreenServer
             provider.Services.AddService(typeof(TwitterClient), _client);
             provider.Services.AddService(typeof(EventSettings), settings);
 
-            var options = new StonehengeHostOptions();
+            var options = new StonehengeHostOptions
+            {
+                Title = settings.Name
+            };
             var host = new KestrelHost(provider, options);
             host.Start("localhost", 32000);
 

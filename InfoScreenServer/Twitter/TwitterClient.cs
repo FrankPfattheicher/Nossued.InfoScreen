@@ -12,7 +12,7 @@ namespace InfoScreenServer.Twitter
         private TweetReceiver _receiver;
 
 
-        public int MaxTweets { get; set; } = 10;
+        public int MaxTweets { get; set; } = 20;
 
         public List<TwitterMessage> Tweets = new List<TwitterMessage>();
 
