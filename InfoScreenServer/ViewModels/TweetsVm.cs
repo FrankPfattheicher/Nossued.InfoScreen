@@ -1,14 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using IctBaden.Stonehenge3.Core;
 using IctBaden.Stonehenge3.ViewModel;
 using InfoScreenServer.Twitter;
+// ReSharper disable UnusedMember.Global
 
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace InfoScreenServer.ViewModels
 {
+    // ReSharper disable once UnusedType.Global
     public class TweetsVm : ActiveViewModel, IDisposable
     {
         private readonly TwitterClient _twitter;
@@ -27,6 +28,14 @@ namespace InfoScreenServer.ViewModels
         public override void OnLoad()
         {
             _twitter.NewTweet += OnNewTweet;
+            if (Session.Parameters.ContainsKey("room"))
+            {
+                Task.Run(() =>
+                {
+                    Task.Delay(TimeSpan.FromSeconds(30)).Wait();
+                    NavigateTo("room");
+                });
+            }
         }
 
         public void Dispose()

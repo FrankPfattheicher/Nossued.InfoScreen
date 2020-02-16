@@ -20,6 +20,17 @@
       <EmbeddedResource Include="app\tweets.html" />
       <None Remove="app\images\bienenwabe.webp" />
       <EmbeddedResource Include="app\images\bienenwabe.webp" />
+      <None Remove="app\sonne.html" />
+      <None Remove="app\images\cloud.png" />
+      <EmbeddedResource Include="app\images\cloud.png" />
+      <None Remove="app\images\krokodil.png" />
+      <EmbeddedResource Include="app\images\krokodil.png" />
+      <None Remove="app\images\sonne.png" />
+      <EmbeddedResource Include="app\images\sonne.png" />
+      <None Remove="app\images\team.png" />
+      <EmbeddedResource Include="app\images\team.png" />
+      <None Remove="app\room.html" />
+      <EmbeddedResource Include="app\room.html" />
     </ItemGroup>
 
     <ItemGroup>
