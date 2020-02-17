@@ -1,0 +1,23 @@
+<!--Title:Übersicht:20-->
+<div>
+
+    <div style="text-align: center;">
+        <h1>Die Räume</h1>
+
+        <table style="width: 100%; height: 100%;">
+            <tr>                 
+                <th v-for="room in Rooms">
+                    <img style="width: 5em; height: 5em;" :src="room.Image">
+                    <br/>
+                    {{room.Name}}
+                </th>
+            </tr>
+            <tr>
+                <td v-for="room in Rooms">
+                    {{room.Capacity}} Personen
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>

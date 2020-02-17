@@ -31,6 +31,8 @@
       <EmbeddedResource Include="app\images\team.png" />
       <None Remove="app\room.html" />
       <EmbeddedResource Include="app\room.html" />
+      <None Remove="app\overview.html" />
+      <EmbeddedResource Include="app\overview.html" />
     </ItemGroup>
 
     <ItemGroup>

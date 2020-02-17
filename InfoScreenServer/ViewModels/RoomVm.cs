@@ -17,6 +17,7 @@ namespace InfoScreenServer.ViewModels
     {
         public string RoomImage { get; set; }
         public string RoomName { get; set; }
+        public string RoomColor { get; set; }
         public string SlotTime { get; set; }
         public int SlotMinutes { get; set; }
         public string SlotOwner { get; set; }
@@ -28,6 +29,7 @@ namespace InfoScreenServer.ViewModels
         {
             RoomName = "Sonne";
             RoomImage = $"images/{RoomName}.png";
+            RoomColor = "transparent";
 
             SlotTime = "11:00 - 11:45";
             SlotOwner = "Test";
@@ -49,6 +51,7 @@ namespace InfoScreenServer.ViewModels
             RoomImage = $"images/{RoomName}.png";
 
             var sessions = profile[RoomName];
+            RoomColor = sessions.Get("Color", "transparent");
 
             var now = DateTime.Now.Hour * 60 + DateTime.Now.Minute;
             var time = new Regex("([0-9]+):([0-9]+)[^0-9]*([0-9]+):([0-9]+)");

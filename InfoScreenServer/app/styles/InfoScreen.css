@@ -1,4 +1,8 @@
 
+#app {
+    height: 100vh;
+}
+
 .bg-info {
     background-color: transparent !important;
 }
@@ -8,7 +12,7 @@
 }
 
 .nav-link {
-    color: white !important;
+    color: silver !important;
 }
 
 .twitter-wall {
