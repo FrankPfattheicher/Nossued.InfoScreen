@@ -1,4 +1,16 @@
 
+.bg-info {
+    background-color: transparent !important;
+}
+.navbar-brand {
+    color: black !important;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+}
+
 .twitter-wall {
     font-size: 8pt;
     height: 100%;
@@ -23,7 +35,7 @@
 
 .tweet {
     background-color: whitesmoke;
-    width: 200px;
+    width: 300px;
     margin: .5em;
     padding: .3em;
     border: 1px solid darkslategrey;
@@ -32,8 +44,10 @@
 }
 
 .tweet-user {
-    color: darkblue;
-    font-weight: bolder;
+    font-weight: bold;
+}
+.tweet-handle {
+    font-size: 80%;
 }
 
 .tweet-time {
@@ -42,6 +56,6 @@
 }
 
 .tweet img {
-    max-height: 100px; 
-    max-width: 200px;
+    max-height: 200px; 
+    max-width: 300px;
 }

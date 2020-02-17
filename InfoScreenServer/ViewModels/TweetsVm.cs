@@ -13,12 +13,12 @@ namespace InfoScreenServer.ViewModels
     public class TweetsVm : ActiveViewModel, IDisposable
     {
         private readonly TwitterClient _twitter;
-        private readonly EventSettings _settings;
+        private readonly InfoSettings _settings;
 
         public string Name => _settings.Name;
         public TwitterMessage[] Tweets => _twitter.Tweets.ToArray();
 
-        public TweetsVm(AppSession session, TwitterClient twitter, EventSettings settings) 
+        public TweetsVm(AppSession session, TwitterClient twitter, InfoSettings settings) 
             : base(session)
         {
             _twitter = twitter;

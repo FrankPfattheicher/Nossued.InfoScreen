@@ -8,17 +8,21 @@ namespace InfoScreenServer.Twitter
 {
     public class TwitterClient : IDisposable
     {
+        private readonly InfoSettings _settings;
         private IDisposable _subscription;
         private TweetReceiver _receiver;
 
 
-        public int MaxTweets { get; set; } = 20;
-
         public List<TwitterMessage> Tweets = new List<TwitterMessage>();
+
+        public TwitterClient(InfoSettings settings)
+        {
+            _settings = settings;
+        }
 
         public event Action<TwitterMessage> NewTweet;
         
-        public bool Connect(string key, string secret, string trackWord)
+        public void Connect(string key, string secret)
         {
             var session = OAuth.Authorize(key, secret);
             
@@ -26,7 +30,7 @@ namespace InfoScreenServer.Twitter
             {
                 UseShellExecute = true
             };
-            System.Diagnostics.Process.Start(startInfo);
+            Process.Start(startInfo);
             
             Console.Write("Enter PIN code:");
             var pin = Console.ReadLine();
@@ -34,29 +38,30 @@ namespace InfoScreenServer.Twitter
             try
             {
                 var tokens = session.GetTokens(pin);
-
+                var parameters = new Dictionary<string, object>
+                {
+                    { "track", _settings.Keywords },
+                    { "tweet_mode", TweetMode.Extended }
+                };
                 var stream = tokens.Streaming
-                    .FilterAsObservable(track => trackWord);
+                    .FilterAsObservable(parameters);
 
                 Console.WriteLine("Waiting for tweets...");
             
-                _receiver = new TweetReceiver();
+                _receiver = new TweetReceiver(_settings.ColoredTweets);
                 _receiver.NewTweet += OnNewTweetReceived;
                 _subscription = stream.Subscribe(_receiver);
-
-                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return false;
             }
         }
 
         private void OnNewTweetReceived(TwitterMessage tweet)
         {
             Tweets.Insert(0, tweet);
-            Tweets = Tweets.Take(MaxTweets).ToList();
+            Tweets = Tweets.Take(_settings.MaxTweets).ToList();
             NewTweet?.Invoke(tweet);
         }
 

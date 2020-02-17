@@ -1,7 +1,22 @@
+<!--Title:Tweets:10-->
 <div class="twitter-wall">
 
-    <div class="tweet" v-for="tweet in Tweets">
-        <span class="tweet-user">{{tweet.UserName}}</span> <span class="tweet-time" >{{tweet.TimeText}}</span>
+    <div class="tweet" v-for="tweet in Tweets"
+         :style="{ color: tweet.TextColor, backgroundColor: tweet.BackgroundColor }">
+        <table width="100%">
+            <tr>
+                <td style="width: 3.5em;">
+                    <img style="widht: 3em; height: 3em;" :src="tweet.UserImage" />
+                </td>
+                <td>
+                    <span class="tweet-user">{{tweet.UserName}}</span><br/>
+                    <span class="tweet-handle">{{tweet.UserHandle}}</span>
+                </td>
+                <td style="text-align: right">
+                    <span class="tweet-time" >{{tweet.TimeText}}</span>
+                </td>
+            </tr>
+        </table>
         <p>{{tweet.Text}}</p>         
         <img v-if="tweet.HasMedia" :src="tweet.MediaUrl"/>
     </div>

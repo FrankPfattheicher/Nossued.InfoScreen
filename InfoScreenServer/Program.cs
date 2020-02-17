@@ -24,18 +24,19 @@ namespace InfoScreenServer
 
             var cfgFile = Path.Combine(Application.GetApplicationDirectory(), "InfoScreen.cfg");
             var profile = new Profile(cfgFile);
-            var settings = new EventSettings();
+            var settings = new InfoSettings();
 
-            new ClassPropertyProvider(settings)
-                .SetProperties(profile["Event"].Properties);
+            var spp = new ClassPropertyProvider(settings);
+            spp.SetProperties(profile["Event"].Properties);
+            spp.SetProperties(profile["Twitter"].Properties);
 
-            Console.WriteLine($"Event {settings.Name}, Keyword = {settings.Keyword}");
-            
-            
-            var key = Environment.GetEnvironmentVariable("twitter-key");
-            var secret = Environment.GetEnvironmentVariable("twitter-secret");
+            Console.WriteLine($"Event {settings.Name}, Keyword = {settings.Keywords}");
 
-            _client = new TwitterClient();
+
+            var key = "";//Environment.GetEnvironmentVariable("twitter-key");
+            var secret = "";//Environment.GetEnvironmentVariable("twitter-secret");
+
+            _client = new TwitterClient(settings);
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(secret))
             {
                 Console.WriteLine("Missing twitter auth - start demo mode");
@@ -45,14 +46,14 @@ namespace InfoScreenServer
             }
             else
             {
-                _client.Connect(key, secret, settings.Keyword);
+                _client.Connect(key, secret);
             }            
             
             var vue = new VueResourceProvider();
             var provider = StonehengeResourceLoader.CreateDefaultLoader(vue);
             
             provider.Services.AddService(typeof(TwitterClient), _client);
-            provider.Services.AddService(typeof(EventSettings), settings);
+            provider.Services.AddService(typeof(InfoSettings), settings);
 
             var options = new StonehengeHostOptions
             {

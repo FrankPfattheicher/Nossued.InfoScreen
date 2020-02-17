@@ -8,8 +8,8 @@
     <ItemGroup>
       <PackageReference Include="CoreTweet" Version="1.0.0.483" />
       <PackageReference Include="CoreTweet.Streaming.Reactive" Version="0.6.0.251" />
-      <PackageReference Include="IctBaden.Framework" Version="1.0.12" />
-      <PackageReference Include="IctBaden.Stonehenge3" Version="3.10.7" />
+      <PackageReference Include="IctBaden.Framework" Version="1.0.14" />
+      <PackageReference Include="IctBaden.Stonehenge3" Version="3.10.9" />
     </ItemGroup>
 
     <ItemGroup>
@@ -34,6 +34,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include="Sessions.cfg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <None Remove="InfoScreen.cfg" />
       <Content Include="InfoScreen.cfg">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
